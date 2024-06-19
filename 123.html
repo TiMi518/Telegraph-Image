@@ -42,9 +42,9 @@
 <body>
   <div id="app">
     <div class="gallery">
-      <div class="gallery-item" v-for="image in images" :key="image.src">
+      <div class="gallery-item" v-for="image in tableData" :key="image.name">
         <el-image
-          :src="image.src"
+          :src="'/file/' + image.name"
           fit="cover"
           lazy>
         </el-image>
@@ -60,15 +60,30 @@
     new Vue({
       el: '#app',
       data: {
-        images: [
-          { src: 'https://via.placeholder.com/300x200' },
-          { src: 'https://via.placeholder.com/300x300' },
-          { src: 'https://via.placeholder.com/200x300' },
-          { src: 'https://via.placeholder.com/300x400' },
-          { src: 'https://via.placeholder.com/400x300' },
-          { src: 'https://via.placeholder.com/200x200' },
-          // Add more image URLs as needed
-        ]
+        tableData: []
+      },
+      mounted () {
+        var requestOptions = {
+          method: 'GET',
+          redirect: 'follow',
+          //include authorization credentials
+          credentials: 'include'
+        };
+
+        fetch("./api/manage/list", requestOptions)
+          //判断是否需要登录
+          .then(response => {
+            if(response.status==401){
+              alert("请先登录");
+              window.location.href="./api/manage/login";
+            }
+            else{
+              return response;
+            }
+          })
+          .then(response => response.json()) 
+          .then(result => {this.tableData = result; console.log(result)})
+          .catch(error => {alert("An error occurred while synchronizing data with the server, please check the network connection"); console.log('error', error)});
       }
     })
   </script>
