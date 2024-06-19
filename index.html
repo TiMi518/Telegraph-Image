@@ -13,12 +13,24 @@
     <style>
         [v-cloak] { display: none; }
         body { font-family: 'Arial', sans-serif; }
-        /* 添加更多样式 */
+        .nuxt-progress { width: 0%; height: 2px; background-color: #000; opacity: 1; }
+        header { text-align: center; padding: 20px; background: #f5f5f5; }
+        header h1 { margin: 0; font-size: 24px; }
+        main { padding: 20px; }
+        section { margin-bottom: 20px; }
+        section h2 { font-size: 20px; margin-bottom: 10px; }
+        input[type="file"] { display: block; margin-bottom: 10px; }
+        button { padding: 10px 20px; background-color: #007BFF; color: #fff; border: none; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+        footer { text-align: center; padding: 10px; background: #f5f5f5; }
+        ul { list-style-type: none; padding: 0; }
+        ul li { margin-bottom: 10px; }
+        img { max-width: 100%; height: auto; }
     </style>
 </head>
 <body>
     <div id="__nuxt">
-        <div class="nuxt-progress" style="width:0%;height:2px;background-color:#000;opacity:1;"></div>
+        <div class="nuxt-progress"></div>
         <div id="__layout">
             <div>
                 <header>
