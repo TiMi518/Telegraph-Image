@@ -45,6 +45,10 @@
         column-count: 1;
       }
     }
+    .el-dialog {
+      max-width: 80%;
+      margin: 0 auto;
+    }
   </style>
 </head>
 <body>
@@ -59,7 +63,7 @@
         </el-image>
       </div>
     </div>
-    <el-dialog :visible.sync="dialogVisible" width="80%">
+    <el-dialog :visible.sync="dialogVisible" width="50%">
       <img :src="dialogImageUrl" alt="" style="width: 100%;">
     </el-dialog>
   </div>
@@ -84,9 +88,7 @@
         fetchData() {
           var requestOptions = {
             method: 'GET',
-            redirect: 'follow',
-            // include authorization credentials if needed
-            credentials: 'same-origin'
+            redirect: 'follow'
           };
 
           fetch("./api/manage/list", requestOptions)
