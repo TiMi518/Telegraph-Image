@@ -44,6 +44,7 @@
     <div class="gallery">
       <div class="gallery-item" v-for="image in tableData" :key="image.name">
         <el-image
+          v-if="image.name"
           :src="'/file/' + image.name"
           fit="cover"
           lazy>
@@ -63,27 +64,36 @@
         tableData: []
       },
       mounted () {
-        var requestOptions = {
-          method: 'GET',
-          redirect: 'follow',
-          //include authorization credentials
-          credentials: 'include'
-        };
+        this.fetchData();
+        this.setupAutoRefresh();
+      },
+      methods: {
+        fetchData() {
+          var requestOptions = {
+            method: 'GET',
+            redirect: 'follow',
+            // include authorization credentials
+            credentials: 'include'
+          };
 
-        fetch("./api/manage/list", requestOptions)
-          //判断是否需要登录
-          .then(response => {
-            if(response.status==401){
-              alert("请先登录");
-              window.location.href="./api/manage/login";
-            }
-            else{
-              return response;
-            }
-          })
-          .then(response => response.json()) 
-          .then(result => {this.tableData = result; console.log(result)})
-          .catch(error => {alert("An error occurred while synchronizing data with the server, please check the network connection"); console.log('error', error)});
+          fetch("./api/manage/list", requestOptions)
+            .then(response => {
+              if (response.status == 401) {
+                alert("请先登录");
+                window.location.href = "./api/manage/login";
+              } else {
+                return response;
+              }
+            })
+            .then(response => response.json())
+            .then(result => { this.tableData = result; console.log(result) })
+            .catch(error => { alert("An error occurred while synchronizing data with the server, please check the network connection"); console.log('error', error) });
+        },
+        setupAutoRefresh() {
+          setInterval(() => {
+            this.fetchData();
+          }, 5000); // Refresh every 5 seconds
+        }
       }
     })
   </script>
