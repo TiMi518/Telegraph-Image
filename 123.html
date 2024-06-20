@@ -2,8 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>雪缘之颠AI作品集</title>   
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <!-- import CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.3/lib/theme-chalk/index.css" integrity="sha256-ghr1zmXTODLKl1HULQd6fq1MIe7m3FJiNTOCT8sddLM=" crossorigin="anonymous">  
   <style>
@@ -52,24 +51,7 @@
       margin: 0 auto;
     }
   </style>
- <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const passwordValidTime = 10 * 60 * 1000; // 10 minutes
-      const storedPasswordTime = sessionStorage.getItem('passwordTime');
-      const currentTime = new Date().getTime();
 
-      if (!storedPasswordTime || currentTime - storedPasswordTime > passwordValidTime) {
-        var password = prompt('请输入密码:');
-        if (password !== '1314') {   
-          alert('密码错误');
-          window.location.href = 'faka.kokoo.c';   
-        } else {
-          alert('验证成功');
-          sessionStorage.setItem('passwordTime', currentTime);
-        }
-      }
-    });
- </script>
 
 </head>
 <body>
@@ -85,7 +67,7 @@
       </div>
     </div>
     <el-dialog :visible.sync="dialogVisible" width="50%">
-      <img :src="dialogImageUrl" alt="" style="width: 100%;">
+      <img :src="dialogImageUrl" alt="" style="width: 100%;"> 
     </el-dialog>
   </div>
   
