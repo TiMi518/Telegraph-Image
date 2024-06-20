@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8"> 
   <!-- import CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.3/lib/theme-chalk/index.css" integrity="sha256-ghr1zmXTODLKl1HULQd6fq1MIe7m3FJiNTOCT8sddLM=" crossorigin="anonymous">
-  <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var password = prompt('请输入密码:');
-    if (password !== '123') {    
-      alert('访问被拒绝');
-      window.location.href = 'about:blank';
-    } else {
-      alert('访问授权');
-    }
-  });
-</script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.3/lib/theme-chalk/index.css" integrity="sha256-ghr1zmXTODLKl1HULQd6fq1MIe7m3FJiNTOCT8sddLM=" crossorigin="anonymous">  
+    <title>雪缘之颠AI作品集</title>    
+ <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const passwordValidTime = 10 * 60 * 1000; // 10 minutes
+      const storedPasswordTime = sessionStorage.getItem('passwordTime');
+      const currentTime = new Date().getTime();
+
+      if (!storedPasswordTime || currentTime - storedPasswordTime > passwordValidTime) {   
+        var password = prompt('请输入密码:');
+        if (password !== '1314') {   
+          alert('密码错误');
+          window.location.href = 'faka.kokoo.c';   
+        } else {
+          alert('验证成功');
+          sessionStorage.setItem('passwordTime', currentTime); 
+        }
+      }
+    });
+ </script>
 
   <style>
     body {
