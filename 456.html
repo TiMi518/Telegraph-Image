@@ -73,6 +73,23 @@
       max-width: 80%;
       margin: 0 auto;
     }
+    .refresh-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #409EFF;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    .refresh-button:hover {
+      background-color: #66b1ff;
+    }
   </style>
 </head>
 <body>
@@ -90,6 +107,7 @@
     <el-dialog :visible.sync="dialogVisible" width="50%">
       <img :src="dialogImageUrl" alt="" style="width: 100%;">
     </el-dialog>
+    <button class="refresh-button" @click="fetchData">&#x21bb;</button>
   </div>
 
   <!-- import Vue before Element -->
@@ -106,7 +124,6 @@
       },
       mounted () {
         this.fetchData();
-        this.setupAutoRefresh();
       },
       methods: {
         fetchData() {
@@ -123,11 +140,6 @@
               console.log(result);
             })
             .catch(error => { console.log('An error occurred while synchronizing data with the server, please check the network connection'); console.log('error', error) });
-        },
-        setupAutoRefresh() {
-          setInterval(() => {
-            this.fetchData();
-          }, 5000); // Refresh every 5 seconds
         },
         openImage(image) {
           this.dialogImageUrl = '/file/' + image.name;
