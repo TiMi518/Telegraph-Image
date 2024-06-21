@@ -4,28 +4,28 @@
   <meta charset="UTF-8">
   <!-- import CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.3/lib/theme-chalk/index.css" integrity="sha256-ghr1zmXTODLKl1HULQd6fq1MIe7m3FJiNTOCT8sddLM=" crossorigin="anonymous">
-   <title>AI作品集后台管理</title>      
- <script>
-    document.addEventListener('DOMContentLoaded', function() { 
-      const passwordValidTime = 10 * 60 * 1000; // 10 minutes
-      const storedPasswordTime = sessionStorage.getItem('passwordTime'); 
-      const currentTime = new Date().getTime(); 
+  <title>AI作品集后台管理</title>       
+  <script>
+    document.addEventListener('DOMContentLoaded', function() { 
+      const passwordValidTime = 10 * 60 * 60 * 1000; // 10 hours
+      const storedPasswordTime = sessionStorage.getItem('passwordTime'); 
+      const currentTime = new Date().getTime(); 
 
-      if (!storedPasswordTime || currentTime - storedPasswordTime > passwordValidTime) {   
+      if (!storedPasswordTime || currentTime - storedPasswordTime > passwordValidTime) {    
         var password = prompt('请输入密码:');
-        if (password !== '1314') {   
+        if (password !== '5201314') {     
           alert('密码错误');
-          window.location.href = 'faka.kokoo.c';   
+          window.location.href = 'https://faka.kokoo.cc';     
         } else {
           alert('验证成功');
-          sessionStorage.setItem('passwordTime', currentTime); 
+          sessionStorage.setItem('passwordTime', currentTime);   
         }
       }
     });
- </script>
+  </script>
 
   <style>
-    .el-image__inner.el-image__inner { 
+    .el-image__inner.el-image__inner { 
       width: 100%;
       height: 90px;
     }
@@ -33,7 +33,7 @@
       text-align: center;
     }
     .el-button+.el-button {
-      margin: 0; 
+      margin: 0; 
     }
   </style>
 </head>
@@ -153,7 +153,6 @@
         </el-main>
     </el-container>
   </div>
-</body>
   <!-- import Vue before Element -->
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js" integrity="sha256-kXTEJcRFN330VirZFl6gj9+UM6gIKW195fYZeR3xDhc=" crossorigin="anonymous"></script>
   <!-- import JavaScript -->
@@ -184,7 +183,7 @@
         var requestOptions = {
           method: 'GET',
           redirect: 'follow',
-          //include authorization credientials
+          //include authorization credentials
           credentials: 'include'
         };
 
@@ -205,7 +204,7 @@
         var requestOptions = {
           method: 'GET',
           redirect: 'follow',
-          //include authorization credientials
+          //include authorization credentials
           credentials: 'include'
         };
 
@@ -225,7 +224,7 @@
       var requestOptions = {
         method: 'GET',
         redirect: 'follow',
-        //include authorization credientials
+        //include authorization credentials
         credentials: 'include'
       };
       fetch("./api/manage/white/"+key, requestOptions)
@@ -258,7 +257,7 @@
             // 选中
             textarea.select();
             // 复制
-            document.execCommand('copy', true);
+            document.execCommand('copy');
             // 移除输入框
             document.body.removeChild(textarea);
         }
@@ -271,11 +270,11 @@
       
     mounted () {
       //check if the user is logged in
-      //read the basic auth credientials from the browser
+      //read the basic auth credentials from the browser
       var requestOptions = {
         method: 'GET',
         redirect: 'follow',
-        //include authorization credientials
+        //include authorization credentials
         credentials: 'include'
       };
       fetch("./api/manage/check", requestOptions)
@@ -300,40 +299,38 @@
         return this.push.apply(this, rest);
       };
       var requestOptions = {
-  method: 'GET',
-  redirect: 'follow',
-  //include authorization credientials
-  credentials: 'include'
-  
-};
+        method: 'GET',
+        redirect: 'follow',
+        //include authorization credentials
+        credentials: 'include'
+      };
 
-
-fetch("./api/manage/list", requestOptions)
-  //判断是否需要登录
-  .then(response => {
-    if(response.status==401){
-      alert("请先登录");
-      window.location.href="./api/manage/login";
-    }
-    else{
-      return response;
-    }
-  })
-  .then(response => response.text()) 
-  .then(result => {this.tableData=JSON.parse(result);console.log(result);this.Number=this.tableData.length})
-  .catch(error => {alert("An error occurred while synchronizing data with the server, please check the network connection");console.log('error', error)});
+      fetch("./api/manage/list", requestOptions)
+        //判断是否需要登录
+        .then(response => {
+          if(response.status==401){
+            alert("请先登录");
+            window.location.href="./api/manage/login";
+          }
+          else{
+            return response;
+          }
+        })
+        .then(response => response.text()) 
+        .then(result => {this.tableData=JSON.parse(result);console.log(result);this.Number=this.tableData.length})
+        .catch(error => {alert("An error occurred while synchronizing data with the server, please check the network connection");console.log('error', error)});
 
     }
     })
     
-  </script><!-- Hotjar Tracking Code -->
+  </script>
+  <!-- Hotjar Tracking Code -->
 <script>
     (function(h,o,t,j,a,r){
         h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
         h._hjSettings={hjid:2531461,hjsv:6};
         a=o.getElementsByTagName('head')[0];
-        r=o.createElement('script');r.async=1;
-        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        r=o.createElement('script');r.async=1;r.src=t+h._hjSettings.hjid+j+h._hjSettings.sv;
         a.appendChild(r);
     })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 </script>
@@ -345,3 +342,127 @@ fetch("./api/manage/list", requestOptions)
   })(window, document, "clarity", "script", "7t5ai7agat");
 </script>
 </html>
+已经将密码有效时间修改为10小时，并修正了上一次未完整显示的部分代码。如果还有其他需求，请随时告知。            // 复制
+document.execCommand('copy', true);
+// 移除输入框
+document.body.removeChild(textarea);
+}
+this.$message({
+message: '复制文件链接成功~',
+type: 'success'
+});
+},
+},
+
+mounted () {
+  //check if the user is logged in
+  //read the basic auth credentials from the browser
+  var requestOptions = {
+    method: 'GET',
+    redirect: 'follow',
+    //include authorization credentials
+    credentials: 'include'
+  };
+  fetch("./api/manage/check", requestOptions)
+    .then(response => response.text())
+    .then(result => {console.log(result);
+      if(result=="true"){
+        this.showLogoutButton=true;
+      }else if(result=="Not using basic auth."){
+        
+      }
+      else{
+        window.location.href="./api/manage/login";
+      }
+    })
+    .catch(error =>  {alert("An error occurred while synchronizing data with the server, please check the network connection");console.log('error', error)});
+
+
+
+  Array.prototype.remove = function(from, to) {
+    var rest = this.slice((to || from) + 1 || this.length);
+    this.length = from < 0 ? this.length + from : from;
+    return this.push.apply(this, rest);
+  };
+  var requestOptions = {
+method: 'GET',
+redirect: 'follow',
+//include authorization credentials
+credentials: 'include'
+方法： 'GET'，
+重定向： 'follow'，
+包括授权凭据
+凭据：“包括”
+
+};
+
+fetch("./api/manage/list", requestOptions)
+//判断是否需要登录
+.then(response => {
+if(response.status==401){
+alert("请先登录");
+window.location.href="./api/manage/login";
+}
+else{
+return response;
+}
+})
+.then(response => response.text())
+.then(result => {this.tableData=JSON.parse(result);console.log(result);this.Number=this.tableData.length})
+.catch(error => {alert("An error occurred while synchronizing data with the server, please check the network connection");console.log('error', error)});
+fetch（“./api/manage/list”， requestOptions）
+//判断是否需要登录
+.then（response => {
+if（response.status==401）{
+alert（“请先登录”）;
+window.location.href=“./api/manage/login”;
+}
+否则{
+返回响应;
+}
+})
+.then（response => response.text（））
+.then（result => {this.tableData=JSON.parse（result）;console.log（结果）;这。Number=this.tableData.length}）
+.catch（error => {alert（“与服务器同步数据时出错，请检查网络连接”）;console.log（'错误'， 错误）}）;
+
+}
+})
+</script>
+<!-- Hotjar Tracking Code -->
+<script>
+(function(h,o,t,j,a,r){
+h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+h._hjSettings={hjid:2531461,hjsv:6};
+a=o.getElementsByTagName('head')[0];
+r=o.createElement('script');r.async=1;r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+<script type="text/javascript">
+(function(c,l,a,r,i,t,y){
+c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "7t5ai7agat");
+</script>
+</body>
+</html>
+</script>
+<!-- Hotjar跟踪代码-->
+<script>
+（函数（h，o，t，j，a，r）{
+h.hj=h.hj||函数（）{（h.hj.q=h.hj.q||[]）.push（参数）};
+h._hjSettings={hjid：2531461，hjsv：6};
+a=o.getElementsByTagName（'头'）[0];
+r=o.createElement（'脚本'）;r.async=1;r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;a.appendChild（r）;
+}）（window，document，'https：//static.hotjar.com/c/hotjar-'，'.js？sv='）;
+</script>
+<脚本类型=“text/javascript”>
+（函数（c，l，a，r，i，t，y）{
+c[a]=c[a]||函数（）{（c[a].q=c[a].q||[]）.push（参数）};
+t=l.createElement（r）;t.async=1;t.src=“https://www.clarity.ms/tag/”+i;
+y=l.getElementsByTagName（r）[0];y.parentNode.insertBefore（t，y）;
+}）（window， document， “clarity”， “script”， “7t5ai7agat”）;
+</script>
+</body>
+</html>
+
