@@ -18,7 +18,7 @@
           window.location.href = 'about:blank';    
         } else {
           alert('验证成功');
-          sessionStorage.setItem('passwordTime', currentTime); 
+          sessionStorage.setItem('passwordTime', currentTime);
         }
       }
     });
@@ -73,6 +73,15 @@
 </head>
 <body>
   <div id="app">
+    <el-upload
+      action="/api/upload"
+      :on-success="handleUploadSuccess"
+      :show-file-list="false"
+      drag
+    >
+      <i class="el-icon-upload"></i>
+      <div class="el-upload__text">拖拽文件到此处，或<em>点击上传</em></div>
+    </el-upload>
     <div class="gallery">
       <div class="gallery-item" v-for="image in tableData" :key="image.name" @click="openImage(image)">
         <el-image
@@ -117,6 +126,9 @@
               console.log(result);
             })
             .catch(error => { console.log('同步数据时出错，请检查网络连接'); console.log('error', error) });
+        },
+        handleUploadSuccess(response, file, fileList) {
+          this.fetchData(); // 上传成功后刷新图片列表
         },
         openImage(image) {
           this.dialogImageUrl = '/file/' + image.name;
