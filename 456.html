@@ -15,7 +15,7 @@
         var password = prompt('请输入密码:');
         if (password !== '1314') {
           alert('密码错误');
-          window.location.href = 'faka.kokoo.c'; 
+          window.location.href = 'https://faka.kokoo.cc'; 
         } else {
           alert('验证成功');
           sessionStorage.setItem('passwordTime', currentTime);
@@ -113,7 +113,7 @@
           fetch("./api/manage/list", requestOptions)
             .then(response => response.json())
             .then(result => { 
-              this.tableData = result.sort((a, b) => new Date(b.uploadDate) - new Date(a.uploadDate)); // 根据上传时间排序，最新的在前
+              this.tableData = result; // 不排序，按原顺序显示
               console.log(result);
             })
             .catch(error => { 
