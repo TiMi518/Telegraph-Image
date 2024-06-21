@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"> 
   <!-- 引入 CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-ui@2.15.3/lib/theme-chalk/index.css" integrity="sha256-ghr1zmXTODLKl1HULQd6fq1MIe7m3FJiNTOCT8sddLM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="" integrity="sha256-ghr1zmXTODLKl1HULQd6fq1MIe7m3FJiNTOCT8sddLM=" crossorigin="anonymous">
   <title>雪缘之颠AI作品集</title>  
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -15,7 +15,7 @@
         var password = prompt('请输入密码:');
         if (password !== '1314') {
           alert('密码错误');
-          window.location.href = 'about:blank';    
+          window.location.href = 'faka.kokoo.c'; 
         } else {
           alert('验证成功');
           sessionStorage.setItem('passwordTime', currentTime);
@@ -73,15 +73,6 @@
 </head>
 <body>
   <div id="app">
-    <el-upload
-      action="/api/upload"
-      :on-success="handleUploadSuccess"
-      :show-file-list="false"
-      drag
-    >
-      <i class="el-icon-upload"></i>
-      <div class="el-upload__text">拖拽文件到此处，或<em>点击上传</em></div>
-    </el-upload>
     <div class="gallery">
       <div class="gallery-item" v-for="image in tableData" :key="image.name" @click="openImage(image)">
         <el-image
@@ -98,8 +89,8 @@
   </div>
   
   <!-- 引入 Vue 和 Element UI 的 JavaScript -->
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js" integrity="sha256-kXTEJcRFN330VirZFl6gj9+UM6gIKW195fYZeR3xDhc=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.3/lib/index.js" integrity="sha256-OFVFYfqhQ9nDnKh+NfIsefpy/fnjTwkK909ZYgo45nw=" crossorigin="anonymous"></script>
+  <script src="" integrity="sha256-kXTEJcRFN330VirZFl6gj9+UM6gIKW195fYZeR3xDhc=" crossorigin="anonymous"></script>
+  <script src="" integrity="sha256-OFVFYfqhQ9nDnKh+NfIsefpy/fnjTwkK909ZYgo45nw=" crossorigin="anonymous"></script>
   <script>
     new Vue({
       el: '#app',
@@ -122,7 +113,7 @@
           fetch("./api/manage/list", requestOptions)
             .then(response => response.json())
             .then(result => { 
-              this.tableData = result.reverse(); // 反向显示图片，最新的在前
+              this.tableData = result.sort((a, b) => new Date(b.uploadDate) - new Date(a.uploadDate)); // 根据上传时间排序，最新的在前
               console.log(result);
             })
             .catch(error => { console.log('同步数据时出错，请检查网络连接'); console.log('error', error) });
